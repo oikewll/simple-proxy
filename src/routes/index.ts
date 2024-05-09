@@ -1,3 +1,4 @@
+import qs from 'qs';
 import { getBodyBuffer } from '@/utils/body';
 import {
   getProxyHeaders,
@@ -10,12 +11,17 @@ import {
   setTokenHeader,
 } from '@/utils/turnstile';
 
+type SearchParams = Record<string, string | undefined>;
+
 export default defineEventHandler(async (event) => {
   // handle cors, if applicable
   if (isPreflightRequest(event)) return handleCors(event, {});
 
   // parse destination URL
-  const destination = getQuery<{ destination?: string }>(event).destination;
+  const destination = getQuery<SearchParams>(event).destination;
+  const query = getQuery<SearchParams>(event);
+  delete query.destination;
+  const params = qs.stringify(query);
   if (!destination)
     return await sendJson({
       event,
@@ -42,7 +48,7 @@ export default defineEventHandler(async (event) => {
 
   // proxy
   try {
-    await specificProxyRequest(event, destination, {
+    await specificProxyRequest(event, destination + '&' + params, {
       blacklistedHeaders: getBlacklistedHeaders(),
       fetchOptions: {
         redirect: 'follow',

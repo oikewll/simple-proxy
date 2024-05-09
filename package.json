@@ -1,7 +1,7 @@
 {
   "name": "simple-proxy",
   "private": true,
-  "version": "2.1.4",
+  "version": "2.1.5",
   "scripts": {
     "prepare": "nitropack prepare",
     "dev": "nitropack dev",
@@ -18,17 +18,19 @@
   "dependencies": {
     "h3": "^1.10.0",
     "jose": "^5.2.0",
-    "nitropack": "^2.8.1"
+    "nitropack": "^2.8.1",
+    "qs": "^6.12.1"
   },
   "devDependencies": {
+    "@rollup/wasm-node": "^4.9.4",
+    "@types/qs": "^6.9.15",
     "@typescript-eslint/eslint-plugin": "^6.7.0",
     "@typescript-eslint/parser": "^6.7.0",
     "eslint": "^8.48.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-import-resolver-typescript": "^3.6.0",
-    "eslint-plugin-prettier": "^5.0.0",
-    "@rollup/wasm-node": "^4.9.4"
+    "eslint-plugin-prettier": "^5.0.0"
   },
   "pnpm": {
     "overrides": {
