@@ -44,15 +44,3 @@ jobs:
             latest=auto
           tags: |
             type=semver,pattern={{version}},value=v${{ steps.package-version.outputs.current-version }}
-
-      - name: Build and push Docker image
-        id: build-and-push
-        uses: docker/build-push-action@v5
-        with:
-          push: true
-          platforms: linux/amd64,linux/arm64
-          context: .
-          labels: ${{ steps.meta.outputs.labels }}
-          tags: ${{ steps.meta.outputs.tags }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max

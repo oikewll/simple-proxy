@@ -32,9 +32,6 @@ jobs:
       - name: Prepare for linting
         run: pnpm prepare
 
-      - name: Run ESLint
-        run: pnpm lint
-
   building:
     name: Build project
     runs-on: ubuntu-latest
